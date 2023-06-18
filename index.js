@@ -1,11 +1,12 @@
-const request = new XMLHttpRequest();
-
-request.addEventListener("readystatechange", () => {
-  //   console.log(request, request.readyState);
-  if (request.readyState === 4) {
-    console.log(request, request.responseText);
-  }
-});
-
-request.open("GET", "https://jsonplaceholder.typicode.com/todos/");
-request.send();
+fetch("data/db.json")
+  .then((response) => {
+    console.log("resolved", response);
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    console.log(data.careers[0].id);
+  })
+  .catch((err) => {
+    console.log("rejected", err);
+  });
