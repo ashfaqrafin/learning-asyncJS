@@ -15,6 +15,10 @@
 
 const getData = async () => {
   const response = await fetch("data/db.json");
+  if (response.status !== 200) {
+    throw new Error("cannot fetch the data");
+  }
+
   const data = await response.json();
 
   return data;
@@ -25,5 +29,5 @@ getData()
     console.log("resolved", data.careers[0].id);
   })
   .catch((err) => {
-    console.log("rejected", err);
+    console.log("rejected", err.message);
   });
